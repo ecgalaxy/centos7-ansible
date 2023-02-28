@@ -3,6 +3,10 @@ LABEL maintainer="DIGIT-ECGALAXY@ec.europa.eu"
 
 ENV ANSIBLE_USER=ansible SUDO_GROUP=wheel DEPLOY_GROUP=deployer
 
+RUN yum update -y && \
+    yum clean all -y && \
+    rm -rf /var/cache/yum
+
 RUN set -xe \
   && groupadd -r ${ANSIBLE_USER} \
   && groupadd -r ${DEPLOY_GROUP} \
